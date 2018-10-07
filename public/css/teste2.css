@@ -1,0 +1,21 @@
+/*Abaixo opiniões*/
+
+ .tela-cursos {background-color: #F9FBF2; padding: 15px 10px; padding-left: 20px; padding-right: 20px;}
+ .tela-cursos .texto {padding: 45px; margin-top: 70px;}
+ .tela-cursos h3 { font-size: 2rem; padding: 0px 50px; margin-bottom: 10px; color: #000; text-align: center;}
+ .tela-cursos h4 { font-size: 1.1rem; padding: 0px 50px; margin-bottom: 35px; color: #000; text-align: center;}
+ .tela-cursos h2 { font-size: 1.1rem; padding: 10px 10px;}
+ .tela-cursos p { font-size: 1.1rem; padding: 10px 20px; margin-bottom: 35px; color: #000; text-align: left;}
+ .tela-cursos hr {width:200px; height: 2px; background-color: #fff; margin-bottom: 70px; border: none;}
+ .tela-cursos button {padding: 10px; background-color:#ffa940; color: #fff; text-transform: uppercase; border:none; border-radius: 4px; cursor: pointer; margin-bottom: 35px;}
+ .tela-cursos button:hover {background-color: rgba(255,140,0,0.75); color: rgba(255,140,0,0.75);}
+
+@media (max-width: 1280px) {
+.tela-cursos .texto {padding: 30px; margin-top: 5px;}
+ }
+
+  @media (max-width: 750px) {
+.tela-cursos {background-color: #F9FBF2; padding: 1.5em 10px; padding-left: 20px; padding-right: 20px;}
+.tela-cursos .texto {padding: 0px;}
+.tela-cursos p { font-size: 1.2rem; padding-top: 1.7em; max-width: 800px; margin-bottom: 35px; color: #000; text-align: center;}
+ }

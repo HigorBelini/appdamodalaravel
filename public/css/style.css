@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+ body{ margin: 0; 
+ 	   padding: 0; 
+ 	   font-size: 100%;
+ 	   box-sizing: border-box; 
+       font-family: 'Lato', sans-serif;
+       background: #457EB4;
+       background-size: cover;
+}
+
+.modal-dialog .main-section{ margin:0 auto; margin-top: 130px; padding:0; }
+.modal-dialog .modal-content{background-color: #3b4652; opacity: .95; padding: 0 18px; box-shadow: 0px 0px 3px #848484;}
+.modal-dialog .user-img{ margin-top:-50px; margin-bottom: 35px; border-radius: 50%;}
+.modal-dialog .user-img img {height: 150px; width: 150px; border-radius: 50%; box-shadow: 0px 0px 2px #848484;}
+.modal-dialog h5 {margin-bottom: 20px; margin-top: -15px; color:#fff; }
+.modal-dialog .form-group {margin-bottom: 25px;}
+.modal-dialog .form-group input{height:42px; border-radius: 5px; border:0; font-size: 18px;}
+.modal-dialog button{width:40%; margin: 5px 0 25px;}
+.modal-dialog .btn{ background-color: rgba(255,140,0,0.75); color: #fff; font-size: 19px; padding: 7px 14px; border-radius: 5px;}
+.modal-dialog .btn:hover, .btn:focus { background-color:#FFF; color: #000;}
+.modal-dialog .forgot { padding: 5px 0 25px; }
+.modal-dialog .forgot a {color: #c2fbfe;}
+
+ @media (max-width: 375px) {
+  .modal-dialog .main-section{ margin:0 auto; margin-top: 190px; padding:0; }
+ }
+
+ @media (max-width: 360px) {
+  .modal-dialog .form-group::before { left: 34px;
+  }
+  .modal-dialog .main-section{ margin:0 auto; margin-top: 100px; padding:0; }
+ }
+ 
+ @media (max-width: 320px) {
+  .modal-dialog .form-group::before { display: none; }
+  .modal-dialog .form-group input{padding-left: 20px;}
+ }
+
+ @media (max-width: 300px) {
+  .modal-dialog .form-group input{padding-left: 3px; font-size: 17px; height:40px; }
+  .modal-dialog .btn{ font-size: 17px;}
+  .modal-dialog .forgot{font-size: 17px;}
+ }
+
+ @media (max-width: 290px) {
+  .modal-dialog .form-group input{padding-left: 3px; font-size: 16.5px; height:36px; }
+  .modal-dialog .btn{ font-size: 16.5px;}
+  .modal-dialog .forgot{font-size: 16.5px;}
+ }
+
+ @media (max-width: 280px) {
+  .modal-dialog .form-group input{padding-left: 3px; font-size: 16px; height:32px; }
+  .modal-dialog .btn{ font-size: 16px;}
+  .modal-dialog .forgot{font-size: 16px;}
+ }
+
+ @media (max-width: 270px) {
+  .modal-dialog .form-group input{padding-left: 3px; font-size: 14.8px; height:32px; }
+  .modal-dialog .btn{ font-size: 14.8px;}
+  .modal-dialog .forgot{font-size: 14.8px;}
+ }
+
+ @media (max-width: 250px) {
+ .modal-dialog .form-group input{padding-left: 3px; font-size: 13px; height:30px; }
+  .modal-dialog .btn{ font-size: 13px;}
+  .modal-dialog .forgot{font-size: 13px;}
+ }
+
+ @media (max-width: 240px) {
+  .modal-dialog .form-group input{padding-left: 3px; font-size: 12.5px; height:30px; }
+  .modal-dialog .btn{ font-size: 12.5px;}
+  .modal-dialog .forgot{font-size: 12.5px;}
+ }
+
+
