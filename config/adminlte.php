@@ -108,13 +108,8 @@ return [
     */
 
     'menu' => [
-        'PÁGINAS DO USUÁRIO',
-        [
-            'text' => 'Home',
-            'url'  => '/',
-            'icon' => 'home',
-        ],
-        'PÁGINAS DE ADMINISTRADOR',
+
+        'ADMINISTRADOR',
         [
             'text' => 'Início',
             'url'  => 'administrador',

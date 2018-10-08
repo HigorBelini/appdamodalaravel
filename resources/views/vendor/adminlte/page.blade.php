@@ -23,7 +23,7 @@
                 <div class="container">
                     <div class="navbar-header">
                         <a href="{{ url(config('adminlte.dashboard_url', 'administrador')) }}" class="navbar-brand">
-                            <img src="{{asset('img/logo6.png') }}" style="width: 70px; height: 40px;">
+                            <img src="{{asset('img/logo6.png') }}" style="width: 65px; height: 65px;">
                         </a>
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                             <i class="fa fa-bars"></i>
@@ -41,7 +41,7 @@
             <!-- Logo -->
             <a href="{{ url(config('adminlte.dashboard_url', 'administrador')) }}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-               <img src="{{asset('img/logo6.png') }}" style="width: 60px; height: 50px;">
+               <img src="{{asset('img/logo6.png') }}" style="width: 60px; height: 60px;">
             </a>
 
             <!-- Header Navbar -->
