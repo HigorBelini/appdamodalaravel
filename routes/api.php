@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,17 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('/register', function (Request $request) {
 
-Route::get('/usuarios', function (Request $request) {
-    $usuarios = App\User::all();
-    return response()->json($usuarios);
+	$data = $request->all();
+
+    $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+    $user->token = $user->createToken($user->email)->accessToken;
+
+    return $user;
 });

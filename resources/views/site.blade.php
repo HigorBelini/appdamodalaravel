@@ -146,7 +146,7 @@
       </div>
     </div>
     
-      <section class="content">
+    <section class="content">
       <!-- Small boxes (Stat box) -->
      <div class="row">
            <!-- ./col -->
@@ -192,7 +192,7 @@
           <!-- ./col -->
         </div>
       <!-- /.row -->
-      </section>
+    </section>
 
 </body>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
