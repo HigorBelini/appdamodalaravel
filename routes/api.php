@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 /*
@@ -15,11 +17,27 @@ use App\User;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return User::all();
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::post('/register', function (Request $request) {
 
 	$data = $request->all();
+
+
+	$validacao = Validator::make($data, [
+	        'name' => 'required|string|max:255',
+	        'email' => 'required|string|email|max:255|unique:users',
+	        'password' => 'required|string|min:6|confirmed',
+	    ]);
+
+	if($validacao->fails()){
+		return $validacao->errors();
+	}
 
     $user = User::create([
             'name' => $data['name'],
@@ -30,4 +48,26 @@ Route::post('/register', function (Request $request) {
     $user->token = $user->createToken($user->email)->accessToken;
 
     return $user;
+});
+
+Route::post('/login', function (Request $request) {
+
+	$validacao = Validator::make($request->all(), [
+	  
+	        'email' => 'required|string|email|max:255',
+	        'password' => 'required|string',
+	    ]);
+
+	if($validacao->fails()){
+		return $validacao->errors();
+	}
+
+	if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+		$user = Auth()->user();
+		$user->token = $user->createToken($user->email)->accessToken;
+		return $user;
+	}else{
+		return false;
+	}
+
 });

@@ -64,5 +64,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->token = $user->createToken($user->email)->accessToken;
     }
 }
