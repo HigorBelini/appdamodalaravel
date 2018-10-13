@@ -136,4 +136,112 @@ class UsuariosController extends Controller
          User::find($id)->delete();
         return redirect()->back();
     }
+
+
+    /*
+    //API TESTE
+
+    public function mostrar(Request $request){
+        return User::all();
+    }
+
+    public function mostrarcomtoken(Request $request){
+        $user = $request->user();
+        $user->token = $user->createToken($user->email)->accessToken;
+        return $user;
+    }
+
+    public function editausuario (Request $request){
+        $user = $request->user();
+        $data = $request->all();
+
+    if(isset($data['password']) && $data['password'] != ""){
+
+
+      $validacao = Validator::make($data, [
+          'name' => 'required|string|max:255',
+          'email' => ['required','string','email','max:255',Rule::unique('users')->ignore($user->id)],
+          'password' => 'required|string|min:6',
+      ]);
+
+      if($validacao->fails()){
+        return $validacao->errors();
+      }
+
+      $data['password'] = bcrypt($data['password']);
+
+    }elseif(isset($data['password']) && $data['password'] == ""){
+
+      unset($data['password']);
+
+      $validacao = Validator::make($data, [
+          'name' => 'required|string|max:255',
+          'email' => ['required','string','email','max:255',Rule::unique('users')->ignore($user->id)]
+      ]);
+
+      if($validacao->fails()){
+        return $validacao->errors();
+      }
+
+    }else{
+      $validacao = Validator::make($data, [
+          'name' => 'required|string|max:255',
+          'email' => ['required','string','email','max:255',Rule::unique('users')->ignore($user->id)]
+      ]);
+
+      if($validacao->fails()){
+        return $validacao->errors();
+      }
+    }
+
+    $user->update($data);
+    $user->token = $user->createToken($user->email)->accessToken;
+    return $user;
+    }
+
+    public function novousuario (Request $request){
+        $data = $request->all();
+
+
+    $validacao = Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+    if($validacao->fails()){
+        return $validacao->errors();
+    }
+
+    $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+
+    $user->token = $user->createToken($user->email)->accessToken;
+
+    return $user;
+    }
+
+    public function loginusuario (Request $request){
+        $validacao = Validator::make($request->all(), [
+        'email' => 'required|string|email|max:255',
+        'password' => 'required|string',
+    ]);
+
+    if($validacao->fails()){
+      return $validacao->errors();
+    }
+
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Authentication passed...
+        $user = Auth()->user();
+        $user->token = $user->createToken($user->email)->accessToken;
+        return $user;
+    }else{
+      return false;
+    }
+    }
+    */
 }
