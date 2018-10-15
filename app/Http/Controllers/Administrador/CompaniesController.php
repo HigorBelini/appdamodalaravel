@@ -47,6 +47,28 @@ class CompaniesController extends Controller
           return redirect()->back()->withErrors($validacao)->withInput();
         }
 
+        if($request->hasfile('logo')){
+            $logo = $request->file('logo');
+            $extension = $logo->guessClientExtension();
+            //$base64logo = 'data:image/'.$extension.';base64,'. base64_encode(file_get_contents($logo));
+            $diretorio = 'image/logos/';
+            $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
+            $logo->move($diretorio, $nomeImg);
+            $imagemlogo = $diretorio.$nomeImg;
+        }
+
+        if($request->hasfile('shopfacade')){
+            $shopfacade = $request->file('shopfacade');
+            $extension = $shopfacade->guessClientExtension();
+            //$base64shopfacade = 'data:image/'.$extension.';base64,'. base64_encode(file_get_contents($shopfacade));
+            $diretorio = 'image/shopfacades/';
+            $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
+            $shopfacade->move($diretorio, $nomeImg);
+            $imagemshopfacade = $diretorio.$nomeImg;
+            //$dados['shopfacade'] = $base64shopfacade;
+        }
+
+        /*
         //Hamdle file upload
         if($request->hasfile('logo')){
             //get filename with the extension
@@ -78,7 +100,7 @@ class CompaniesController extends Controller
         }else{
             $fileNameToStore2 ='noimage.jpg';
         }
-    
+        */
         $user = auth()->user();
 
         $empresa = new Company;
@@ -92,8 +114,8 @@ class CompaniesController extends Controller
         $empresa->descriptive = $data['descriptive'];
         $empresa->keywords = $data['keywords'];
         $empresa->date = $data['date'];
-        $empresa->logo = $fileNameToStore;
-        $empresa->shopfacade = $fileNameToStore2;
+        $empresa->logo = $imagemlogo;
+        $empresa->shopfacade = $imagemshopfacade;
         $empresa->user_id = $user->id;
         $empresa->save();
         return redirect()->back();
@@ -107,12 +129,13 @@ class CompaniesController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+        $empresa = Company::find($id);
         $validacao2 = \Validator::make($data,[
          "socialname" => "required",
          "fantasyname" => "required",
          "number" => "required",
-         "logo" => "image|max:1999",
-         "shopfacade" => "image|max:1999",
+         //"logo" => "image|max:1999",
+         //"shopfacade" => "image|max:1999",
          "latitude" => "required",
          "longitude" => "required",
          "industry" => "required",
@@ -121,32 +144,25 @@ class CompaniesController extends Controller
          "date" => "required",
         ]);
 
-         //Hamdle file upload
         if($request->hasfile('logo')){
-            //get filename with the extension
-            $filenameWithExt = $request->file('logo')->getClientOriginalName();
-            //get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //get just extension
-            $extension = $request->file('logo')->getClientOriginalExtension();
-            //filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            //Upload Image
-            $path = $request->file('logo')->storeAs('public/Imagens/Companies', $fileNameToStore);
+            $logo = $request->file('logo');
+            $extension = $logo->guessClientExtension();
+            //$base64logo = 'data:image/'.$extension.';base64,'. base64_encode(file_get_contents($logo));
+            $diretorio = 'image/logos/';
+            $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
+            $logo->move($diretorio, $nomeImg);
+            $imagemlogo = $diretorio.$nomeImg;
         }
 
-        //imagem 2
         if($request->hasfile('shopfacade')){
-            //get filename with the extension
-            $filenameWithExt = $request->file('shopfacade')->getClientOriginalName();
-            //get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //get just extension
-            $extension = $request->file('shopfacade')->getClientOriginalExtension();
-            //filename to store
-            $fileNameToStore2 = $filename.'_'.time().'.'.$extension;
-            //Upload Image
-            $path = $request->file('shopfacade')->storeAs('public/Imagens/Companies', $fileNameToStore2);
+            $shopfacade = $request->file('shopfacade');
+            $extension = $shopfacade->guessClientExtension();
+            //$base64shopfacade = 'data:image/'.$extension.';base64,'. base64_encode(file_get_contents($shopfacade));
+            $diretorio = 'image/shopfacades/';
+            $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
+            $shopfacade->move($diretorio, $nomeImg);
+            $imagemshopfacade = $diretorio.$nomeImg;
+            //$dados['shopfacade'] = $base64shopfacade;
         }
 
 
@@ -156,7 +172,6 @@ class CompaniesController extends Controller
 
         $user = auth()->user();
 
-        $empresa = Company::find($id);
         $empresa->socialname = $data['socialname'];
         $empresa->fantasyname = $data['fantasyname'];
         $empresa->number = $data['number'];
@@ -169,12 +184,12 @@ class CompaniesController extends Controller
         $empresa->user_id = $user->id;
         
         if($request->hasfile('logo')){
-            Storage::delete('public/Imagens/Companies/'.$empresa->logo);
-            $empresa->logo = $fileNameToStore;
+            
+            $empresa->logo = $imagemlogo;
         }
         if($request->hasfile('shopfacade')){
-            Storage::delete('public/Imagens/Companies/'.$empresa->shopfacade);
-            $empresa->shopfacade = $fileNameToStore2;
+            
+            $empresa->shopfacade = $imagemshopfacade;
         }
         $empresa->save();
         return redirect('/administrador/empresas')->with('success','post updated');

@@ -26,7 +26,7 @@
     <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
     <painel titulo="Empresas cadastradas">
      <tabela-lista
-      v-bind:titulos="['Nome']"
+      v-bind:titulos="['#','Nome']"
       v-bind:itens="{{json_encode($listaModelo)}}"
       ordem="desc" ordemcol="1"
       criar="#criar" detalhe="/administrador/empresas/" editar="/administrador/empresas/" deletar="/administrador/empresas/" token="{{ csrf_token() }}" modal="sim"
@@ -179,12 +179,11 @@
         <p><b>Descrição:</b> @{{$store.state.item.descriptive}}</p>
         <p><b>Palavras-chave:</b> @{{$store.state.item.keywords}}<br></p>
         <p><b>Data de cadastro:</b> @{{$store.state.item.date}}</p>
-        <p><b>Data de cadastro:</b> @{{$store.state.item.date}}</p>
         <p><b>Usuário que efetuou cadastro:</b> @{{$store.state.item.user_id}}<br></p>
         <p><b>Logo:</b></p>
-        <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/storage/Imagens/Companies/' + $store.state.item.logo">
+        <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/' + $store.state.item.logo">
         <p><b>Imagem da empresa:</b></p>
-        <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/storage/Imagens/Companies/' + $store.state.item.shopfacade">
+        <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/' + $store.state.item.shopfacade">
   </modal>
 
 </div>

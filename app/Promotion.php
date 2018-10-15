@@ -14,6 +14,10 @@ class Promotion extends Model
     
     protected $dates = ['deleted_at'];
 
+    public function companies(){
+      return $this->belongsTo('App\Company');
+    }
+
     public static function listaModelo($paginate)
     {
 

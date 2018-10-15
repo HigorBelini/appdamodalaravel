@@ -19,10 +19,10 @@ class CreateCompaniesTable extends Migration
             $table->string('socialname');
             $table->string('fantasyname');
             $table->integer('number');
-            $table->string('logo'); //imagem
-            $table->string('shopfacade'); //imagem
-            $table->float('latitude', 8, 2);
-            $table->float('longitude', 8, 2);
+            $table->text('shopfacade');
+            $table->text('logo');
+            $table->double('latitude', 15, 12);
+            $table->double('longitude', 15, 12);
             $table->string('industry');
             $table->text('descriptive');
             $table->text('keywords');

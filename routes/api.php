@@ -3,9 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Illuminate\Validation\Rule;
 use App\Company;
+use App\Promotion;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use App\Company;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/users', function (Request $request) {
     return User::all();
 });
 
@@ -45,7 +47,7 @@ Route::middleware('auth:api')->put('/user', function (Request $request) {
         return $validacao->errors();
       }
 
-      $data['password'] = bcrypt($data['password']);
+      $data['password'] = Hash::make($data['password']);
 
     }elseif(isset($data['password']) && $data['password'] == ""){
 
@@ -80,22 +82,21 @@ Route::post('/register', function (Request $request) {
 
 	$data = $request->all();
 
+    $validacao = Validator::make($data, [
+        'name' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
 
-	$validacao = Validator::make($data, [
-	        'name' => 'required|string|max:255',
-	        'email' => 'required|string|email|max:255|unique:users',
-	        'password' => 'required|string|min:6|confirmed',
-	    ]);
-
-	if($validacao->fails()){
-		return $validacao->errors();
-	}
+    if($validacao->fails()){
+      return $validacao->errors();
+    }
 
     $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+    ]);
 
     $user->token = $user->createToken($user->email)->accessToken;
 
@@ -124,6 +125,18 @@ Route::post('/login', function (Request $request) {
 });
 
 Route::get('/companies', function (Request $request) {
-	$companies =  Company::all();
+	$companies = Company::all();
+	foreach ($companies as $key => $company) {
+		$company->logo = asset($company->logo);
+		$company->shopfacade = asset($company->shopfacade);
+	}
 	return $companies;
+});
+
+Route::get('/promotions', function (Request $request) {
+	$promotions = Promotion::all();
+	foreach ($promotions as $key => $promotion) {
+		$promotion->promotionimage = asset($promotion->promotionimage);
+	}
+	return $promotions;
 });

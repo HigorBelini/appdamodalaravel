@@ -47,10 +47,10 @@
           <label for="name">Nome</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Nome" value="{{old('name')}}" required="required">
         </div>
-        
-        <label for="company_id"></label>
-        <select>
-        </select>
+        <div class="form-group">
+          <label for="name">Código da empresa</label>
+          <input type="text" class="form-control" id="company_id" name="company_id" placeholder="Código da empresa" value="{{old('company_id')}}" required="required">
+        </div>
 
         <div class="form-group">
           <label for="descriptive">Descrição</label>
@@ -120,7 +120,7 @@
       <p><b>Data Final:</b> @{{$store.state.item.finaldate}}<br></p>
       <p><b>Usuário que efetuou cadastro:</b> @{{$store.state.item.user_id}}<br></p>
       <p><b>Imagem principal:</b></p>
-      <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/storage/Imagens/Promotions/' + $store.state.item.promotionimage">
+      <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/' + $store.state.item.promotionimage">
   </modal>
 
 </div>
