@@ -10,7 +10,7 @@ class Promotion extends Model
 {
     use SoftDeletes;
 	
-    protected $fillable = ['name', 'startdate', 'finaldate', 'descriptive', 'company_id', 'promotionimage'];
+    protected $fillable = ['name', 'startdate', 'finaldate', 'descriptive', 'company_id', 'promotionimage', 'logocompany'];
     
     protected $dates = ['deleted_at'];
 

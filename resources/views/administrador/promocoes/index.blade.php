@@ -63,6 +63,12 @@
         <input type="file" id="promotionimage" name="promotionimage" required="required"><br>
         </div>
 
+        <label for="logocompany">Logo da empresa</label>
+        <div class="form-group">    
+        <!-- The file input field used as target for the file upload widget -->
+        <input type="file" id="logocompany" name="logocompany" required="required"><br>
+        </div>
+
         <div class="form-group">
           <label for="startdate">Data de início</label>
           <input type="date" class="form-control" id="startdate" name="startdate" value="{{old('startdate')}}" required="required"> 
@@ -99,6 +105,12 @@
         <input type="file" id="promotionimage" name="promotionimage"><br>
         </div>
 
+         <label for="logocompany">Logo da empresa</label>
+        <div class="form-group">    
+        <!-- The file input field used as target for the file upload widget -->
+        <input type="file" id="logocompany" name="logocompany"><br>
+        </div>
+
         <div class="form-group">
           <label for="startdate">Data de início</label>
           <input type="date" class="form-control" id="startdate" name="startdate" v-model="$store.state.item.startdate" required="required"> 
@@ -121,6 +133,7 @@
       <p><b>Usuário que efetuou cadastro:</b> @{{$store.state.item.user_id}}<br></p>
       <p><b>Imagem principal:</b></p>
       <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/' + $store.state.item.promotionimage">
+      <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/' + $store.state.item.logocompany">
   </modal>
 
 </div>

@@ -34,6 +34,7 @@ class PromotionsController extends Controller
          "finaldate" => "required",
          "descriptive" => "required",
          "promotionimage" => "image|required|max:1999",
+         "logocompany" => "image|required|max:1999",
         ]);
 
         if($validacao->fails()){
@@ -48,6 +49,16 @@ class PromotionsController extends Controller
             $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
             $promotionimage->move($diretorio, $nomeImg);
             $imagempromotionimage = $diretorio.$nomeImg;
+        }
+
+        if($request->hasfile('logocompany')){
+            $logocompany = $request->file('logocompany');
+            $extension = $logocompany->guessClientExtension();
+            //$base64logo = 'data:image/'.$extension.';base64,'. base64_encode(file_get_contents($logo));
+            $diretorio = 'image/promotions/logocompany/';
+            $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
+            $logocompany->move($diretorio, $nomeImg);
+            $imagemlogocompany = $diretorio.$nomeImg;
         }
         /*
         //Hamdle file upload
@@ -76,6 +87,7 @@ class PromotionsController extends Controller
         $promocao->finaldate = $data['finaldate'];
         $promocao->descriptive = $data['descriptive'];
         $promocao->promotionimage = $imagempromotionimage;
+        $promocao->logocompany = $imagemlogocompany;
         $promocao->user_id = $user->id;
         $promocao->save();
         return redirect()->back();
@@ -96,6 +108,7 @@ class PromotionsController extends Controller
          "finaldate" => "required",
          "descriptive" => "required",
          //"promotionimage" => "image|max:1999",
+         //"logocompany" => "image|max:1999",
         ]);
 
          //Hamdle file upload
@@ -108,6 +121,16 @@ class PromotionsController extends Controller
             $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
             $promotionimage->move($diretorio, $nomeImg);
             $imagempromotionimage = $diretorio.$nomeImg;
+        }
+
+        if($request->hasfile('logocompany')){
+            $logocompany = $request->file('logocompany');
+            $extension = $logocompany->guessClientExtension();
+            //$base64logo = 'data:image/'.$extension.';base64,'. base64_encode(file_get_contents($logo));
+            $diretorio = 'image/promotions/logocompany/';
+            $nomeImg = 'img_'.rand(1111,9999).'.'.$extension;
+            $logocompany->move($diretorio, $nomeImg);
+            $imagemlogocompany = $diretorio.$nomeImg;
         }
 
 
@@ -124,6 +147,11 @@ class PromotionsController extends Controller
         if($request->hasfile('promotionimage')){
             
             $promocao->promotionimage = $imagempromotionimage;
+        }
+
+        if($request->hasfile('logocompany')){
+            
+            $promocao->logocompany = $imagemlogocompany;
         }
         
         $promocao->save();

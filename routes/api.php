@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Validation\Rule;
 use App\Company;
 use App\Promotion;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -135,8 +137,18 @@ Route::get('/companies', function (Request $request) {
 
 Route::get('/promotions', function (Request $request) {
 	$promotions = Promotion::all();
+
+	/*$promotions = DB::table('promotions')
+				  ->join('companies', 'companies.id', '=', 'promotions.company_id')
+				  ->select('promotions.id','promotions.name', 'promotions.startdate', 'promotions.finaldate', 'promotions.descriptive', 'promotions.promotionimage', 'company.socialname', 'company.logo')*/
+
 	foreach ($promotions as $key => $promotion) {
 		$promotion->promotionimage = asset($promotion->promotionimage);
+		$promotion->company_id = Company::find($promotion->company_id)->socialname;
+		//$promotion->company_id = $promotion->companies->socialname;
+		//unset($value->company);
+		$promotion->logocompany = asset($promotion->logocompany);
 	}
+
 	return $promotions;
 });
