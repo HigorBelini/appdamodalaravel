@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Validation\Rule;
 use App\Company;
 use App\Promotion;
+use App\UserPromotion;
+use App\Favorite;
 use Illuminate\Support\Facades\DB;
 
 
@@ -151,4 +153,42 @@ Route::get('/promotions', function (Request $request) {
 	}
 
 	return $promotions;
+});
+
+Route::middleware('auth:api')->post('/promotionregistration', function (Request $request) {
+   $user = $request->user();
+   $data = $request->all();
+   $date = date('Y-m-d H:i:s');
+   $userpromotion = new UserPromotion; 
+   $userpromotion->promotion_id = $data['promotion_id'];
+   $userpromotion->user_id = $user->id;
+   $userpromotion->date = $date;
+   $userpromotion->save();
+   $json = UserPromotion::all();
+   return $json;
+});
+
+   Route::middleware('auth:api')->get('/promotionregistration', function (Request $request) {
+   $user = $request->user();
+   //$promotions = Promotion::find();
+   return $user->userpromotions;
+});
+
+Route::middleware('auth:api')->post('/favorites', function (Request $request) {
+   $user = $request->user();
+   $data = $request->all();
+   $date = date('Y-m-d H:i:s');
+   $favorite = new Favorite; 
+   $favorite->company_id = $data['company_id'];
+   $favorite->user_id = $user->id;
+   $favorite->date = $date;
+   $favorite->save();
+   $json = Favorite::all();
+   return $json;
+});
+
+   Route::middleware('auth:api')->get('/favorites', function (Request $request) {
+   $user = $request->user();
+   //$promotions = Promotion::find();
+   return $user->favorites;
 });

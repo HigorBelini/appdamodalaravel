@@ -18,6 +18,15 @@ class Promotion extends Model
       return $this->belongsTo('App\Company');
     }
 
+    public function userpromotion(){
+      return $this->hasMany('App\UserPromotion');
+    }
+
+    public function user(){
+      return $this->hasMany('App\User');
+    }
+
+
     public static function listaModelo($paginate)
     {
 

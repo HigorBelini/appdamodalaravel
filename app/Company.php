@@ -18,6 +18,10 @@ class Company extends Model
       return $this->hasMany('App\Promotion');
     }
 
+    public function favorites(){
+      return $this->hasMany('App\Favorite');
+    }
+
     public static function listaModelo($paginate)
     {
 

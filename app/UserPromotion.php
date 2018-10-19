@@ -31,4 +31,14 @@ class UserPromotion extends Model
 
       return $listaModelo;
     }
+
+    public function user(){
+      //
+      return $this->belongsTo('App\User');
+
+    }
+
+    public function promotion(){
+      return $this->belongsTo('App\Promotion');
+    }
 }

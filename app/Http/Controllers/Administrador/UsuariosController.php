@@ -98,7 +98,7 @@ class UsuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $user = $request->user();
         $data = $request->all();
 
         if(isset($data['password']) && $data['password'] != ""){
@@ -122,6 +122,7 @@ class UsuariosController extends Controller
 
 
         User::find($id)->update($data);
+        $user->token = $user->createToken($user->email)->accessToken;
         return redirect()->back();
     }
 
