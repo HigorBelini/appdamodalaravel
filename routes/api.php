@@ -177,9 +177,10 @@ Route::middleware('auth:api')->post('/promotionregistration', function (Request 
 Route::middleware('auth:api')->post('/favorites', function (Request $request) {
    $user = $request->user();
    $data = $request->all();
+   $favorito = Company::find($data);
    $date = date('Y-m-d H:i:s');
    $favorite = new Favorite; 
-   $favorite->company_id = $data['company_id'];
+   $favorite->company_id = $favorito;
    $favorite->user_id = $user->id;
    $favorite->date = $date;
    $favorite->save();
@@ -192,3 +193,5 @@ Route::middleware('auth:api')->post('/favorites', function (Request $request) {
    //$promotions = Promotion::find();
    return $user->favorites;
 });
+
+
