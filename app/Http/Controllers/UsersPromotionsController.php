@@ -17,7 +17,7 @@ class UsersPromotionsController extends Controller
         ]);
 
 
-        $listaModelo = UserPromotion::select('id')->paginate(5);
+        $listaModelo = UserPromotion::select('id', 'promotion_id', 'user_id')->paginate(5);
 
         return view('administrador.usuariospromocoes.index',compact('listaMigalhas','listaModelo'));
     }
