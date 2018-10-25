@@ -129,29 +129,34 @@ Route::post('/login', function (Request $request) {
 });
 
 Route::get('/companies', function (Request $request) {
-	$companies = Company::all();
+	
+	$companies = DB::table('companies')
+				->select('id', 'socialname', 'fantasyname', 'number', 'shopfacade','logo', 'latitude', 'longitude', 'industry', 'descriptive', 'keywords', 'date','user_id', 'url')
+				->whereNull('deleted_at')
+                ->orderBy('fantasyname','ASC')
+                ->get();
+
 	foreach ($companies as $key => $company) {
 		$company->logo = asset($company->logo);
 		$company->shopfacade = asset($company->shopfacade);
 	}
+
 	return $companies;
 });
 
 Route::get('/promotions', function (Request $request) {
-	$promotions = Promotion::all();
 
-	/*$promotions = DB::table('promotions')
-				  ->join('companies', 'companies.id', '=', 'promotions.company_id')
-				  ->select('promotions.id','promotions.name', 'promotions.startdate', 'promotions.finaldate', 'promotions.descriptive', 'promotions.promotionimage', 'company.socialname', 'company.logo')*/
+	$promotions = DB::table('promotions')
+				  ->select('id','company_id','name', 'startdate', 'finaldate','descriptive' ,'user_id', 'created_at', 'updated_at', 'promotionimage', 'logocompany')
+				  ->whereNull('deleted_at')
+				  ->orderBy('finaldate','ASC')
+				  ->get();
 
 	foreach ($promotions as $key => $promotion) {
 		$promotion->promotionimage = asset($promotion->promotionimage);
 		$promotion->company_id = Company::find($promotion->company_id)->socialname;
-		//$promotion->company_id = $promotion->companies->socialname;
-		//unset($value->company);
 		$promotion->logocompany = asset($promotion->logocompany);
 	}
-
 	return $promotions;
 });
 
@@ -164,6 +169,7 @@ Route::middleware('auth:api')->post('/promotionregistration', function (Request 
    foreach ($promotion as $key => $value) {
      $userpromotion = new UserPromotion;
 	 $userpromotion->promotion_id = $value->id;
+	 $userpromotion->promotion_name= $value->name;
 	 $userpromotion->user_id = $user->id;
 	 $userpromotion->date = $date;
 	 $userpromotion->save();
@@ -186,6 +192,7 @@ Route::middleware('auth:api')->post('/favorites', function (Request $request) {
    foreach ($company as $key => $value) {
     $favorite = new Favorite;
     $favorite->company_id = $value->id;
+    $favorite->company_socialname = $value->socialname;
     $favorite->user_id = $user->id;
     $favorite->date = $date;
     $favorite->save();
@@ -200,4 +207,24 @@ Route::middleware('auth:api')->post('/favorites', function (Request $request) {
    return $user->favorites;
 });
 
+Route::middleware('auth:api')->get('/promotionsuserlist', function (Request $request) {
+    $user = $request->user();
+    return $user->userpromotions()->orderBy('date','DESC')->get();
+    /*$userpromotions = DB::table('userspromotions')
+                      ->join('users','users.id','=','userspromotions.user_id')
+                      ->join('promotions','promotions.id','=','userspromotions.promotion_id')
+                      ->select('users.id', 'users.name','users.email','users.city', 'users.uf', 'users.gender', 'users.datebirth', 'users.profileimage', 'userspromotions.id', 'userspromotions.promotion_id', 'userspromotions.user_id', 'userspromotions.date','userspromotions.name', 'promotions.id', 'promotions.company_id', 'promotions.name', 'promotions.startdate', 'promotions.finaldate', 'promotions.descriptive', 'promotions.user_id', 'promotions.promotionimage', 'promotions.logocompany')
+                      ->whereNull('userspromotions.deleted_at')
+                      ->orderBy('userspromotions.date','DESC')
+                      ->get();
+    return $userpromotions;*/
+
+});
+
+
+Route::middleware('auth:api')->get('/favoriteuser', function (Request $request) {
+    $user = $request->user();
+    return $user->favorites()->orderBy('date','DESC')->get();
+
+});
 

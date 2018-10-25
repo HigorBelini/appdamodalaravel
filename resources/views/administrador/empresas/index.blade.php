@@ -93,6 +93,11 @@
           <label for="keywords">Palavras-chave</label>
           <textarea class="form-control" id="keywords" name="keywords" required="required">{{old('keywords')}}</textarea>
         </div>
+
+        <div class="form-group">
+          <label for="url">Endereço do site na Internet</label>
+          <input type="text" class="form-control" id="url" name="url" placeholder="Pode ser redes sociais" value="{{old('url')}}" required="required">
+        </div>
        
         <div class="form-group">
           <label for="date">Data de cadastro</label>
@@ -155,9 +160,15 @@
           <label for="descriptive">Descrição</label>
           <textarea class="form-control" id="descriptive" name="descriptive" v-model="$store.state.item.descriptive" required="required"></textarea>
         </div>
+
         <div class="form-group">
           <label for="keywords">Palavras-chave</label>
           <textarea class="form-control" id="keywords" name="keywords" v-model="$store.state.item.keywords" required="required"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="url">Endereço do site na Internet</label>
+          <input type="text" class="form-control" id="url" name="url" v-model="$store.state.item.url" placeholder="Endereço do site na Internet" required="required">
         </div>
        
         <div class="form-group">
@@ -180,6 +191,7 @@
         <p><b>Palavras-chave:</b> @{{$store.state.item.keywords}}<br></p>
         <p><b>Data de cadastro:</b> @{{$store.state.item.date}}</p>
         <p><b>Usuário que efetuou cadastro:</b> @{{$store.state.item.user_id}}<br></p>
+        <p><b>Endereço do site:</b> @{{$store.state.item.url}}<br></p>
         <p><b>Logo:</b></p>
         <img style="max-width: 100%; margin-bottom: 20px;" v-bind:src="'/' + $store.state.item.logo">
         <p><b>Imagem da empresa:</b></p>

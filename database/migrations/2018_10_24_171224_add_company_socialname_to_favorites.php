@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddImageTableUser extends Migration
+class AddCompanySocialnameToFavorites extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class AddImageTableUser extends Migration
      */
     public function up()
     {
-    
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('profileimage')->default('default.jpg');
+        Schema::table('favorites', function (Blueprint $table) {
+            $table->string('company_socialname');
         });
-    
     }
 
     /**
@@ -27,8 +25,8 @@ class AddImageTableUser extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('profileimage');
+        Schema::table('favorites', function (Blueprint $table) {
+            $table->dropColumn('company_socialname');
         });
     }
 }

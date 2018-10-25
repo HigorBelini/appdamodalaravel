@@ -118,7 +118,7 @@
 
         <div class="form-group">
           <label for="finaldate">Data final</label>
-          <input type="date" class="form-control" id="finaldate" name="finaldate" v-model="$store.state.item.startdate" required="required"> 
+          <input type="date" class="form-control" id="finaldate" name="finaldate" v-model="$store.state.item.finaldate" required="required"> 
         </div>
 
       </formulario>

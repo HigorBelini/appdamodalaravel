@@ -40,6 +40,7 @@ class CompaniesController extends Controller
          "industry" => "required",
          "descriptive" => "required",
          "keywords" => "required",
+         "url" => "required",
          "date" => "required",
         ]);
 
@@ -113,6 +114,7 @@ class CompaniesController extends Controller
         $empresa->industry = $data['industry'];
         $empresa->descriptive = $data['descriptive'];
         $empresa->keywords = $data['keywords'];
+        $empresa->url = $data['url'];
         $empresa->date = $data['date'];
         $empresa->logo = $imagemlogo;
         $empresa->shopfacade = $imagemshopfacade;
@@ -141,6 +143,7 @@ class CompaniesController extends Controller
          "industry" => "required",
          "descriptive" => "required",
          "keywords" => "required",
+         "url" => "required",
          "date" => "required",
         ]);
 
@@ -180,6 +183,7 @@ class CompaniesController extends Controller
         $empresa->industry = $data['industry'];
         $empresa->descriptive = $data['descriptive'];
         $empresa->keywords = $data['keywords'];
+        $empresa->url = $data['url'];
         $empresa->date = $data['date'];
         $empresa->user_id = $user->id;
         
@@ -198,16 +202,6 @@ class CompaniesController extends Controller
     public function destroy($id)
     {
         $empresa = Company::find($id);
-        if($empresa->logo != 'noimage.jpg'){
-            //Apaga a imagem
-            Storage::delete('public/Imagens/Companies/'.$empresa->logo);
-        }
-
-        if($empresa->shopfacade != 'noimage.jpg'){
-            //Apaga a imagem
-            Storage::delete('public/Imagens/Companies/'.$empresa->shopfacade);
-        }
-        
         $empresa->delete();
 
         return redirect()->back();
