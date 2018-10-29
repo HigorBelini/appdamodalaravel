@@ -37,7 +37,6 @@ Vue.component('migalhas', require('./components/Migalhas.vue'));
 Vue.component('modal', require('./components/modal/Modal.vue'));
 Vue.component('modallink', require('./components/modal/ModalLink.vue'));
 Vue.component('formulario', require('./components/Formulario.vue'));
-Vue.component('artigocard', require('./components/ArtigoCard.vue'));
 
 const app = new Vue({
     el: '#app',

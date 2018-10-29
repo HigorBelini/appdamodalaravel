@@ -28,9 +28,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('eAdmin', function ($user) {
             return $user->admin == "S";
         });
-
-        Gate::define('autor', function ($user) {
-            return ($user->admin == "S" ? true : $user->autor == "S");
-        });
     }
 }

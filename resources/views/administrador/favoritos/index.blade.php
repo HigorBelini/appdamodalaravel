@@ -5,7 +5,7 @@
 
 
 @section('content_header')
-    <h1 style="text-align: center;">Cadastros em promoções</h1>
+    <h1 style="text-align: center;">Cadastros em Favoritos</h1>
 @stop
 
 @section('content')
@@ -22,12 +22,12 @@
     @endif
 
     <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
-    <painel titulo="Cadastros em promoções realizados">
+    <painel titulo="Cadastros de Favoritos">
      <tabela-lista
-      v-bind:titulos="['#','Promoção','Usuário']"
+      v-bind:titulos="['#','Empresa','Usuário']"
       v-bind:itens="{{json_encode($listaModelo)}}"
       ordem="desc" ordemcol="1"
-      detalhe="/administrador/usuarios-promocoes/" modal="sim"
+      detalhe="/administrador/favoritos/" modal="sim"
 
 
       ></tabela-lista>
@@ -39,7 +39,7 @@
 
   </pagina>
 
-  <modal nome="detalhe" v-bind:titulo="$store.state.item.promotion_name">
+  <modal nome="detalhe" v-bind:titulo="$store.state.item.company_socialname">
       <!--<p><b>Nome da promoção:</b> @{{$store.state.item.promotion_name}}<br></p>-->
       <p><b>Usuário:</b> @{{$store.state.item.user_id}}<br></p>
       <p><b>Data de cadastro:</b> @{{$store.state.item.date}}</p>

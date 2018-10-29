@@ -11,28 +11,28 @@
 |
 */
 
-Route::get('/', function () {
+Route::middleware('auth')->get('/', function () {
     return view('site');
 });
 
 Auth::routes();
 
-Route::get('/administrador', 'AdministradorController@index')->name('administrador');
+Route::get('/administrador', 'AdministradorController@index')->name('administrador')->middleware('can:eAdmin');
 
 
 Route::middleware('auth')->prefix('administrador')->namespace('Administrador')->group(function(){
 
-	Route::resource('empresas', 'CompaniesController');
-	Route::resource('promocoes', 'PromotionsController');
-	Route::resource('usuarios', 'UsuariosController');
-	//Route::get('/usuarios', 'UsuariosController@mostrar');
-	Route::resource('administradores', 'AdminController');
-	Route::resource('editar', 'EditarController');
+	Route::resource('empresas', 'CompaniesController')->middleware('can:eAdmin');
+	Route::resource('promocoes', 'PromotionsController')->middleware('can:eAdmin');
+	Route::resource('usuarios', 'UsuariosController')->middleware('can:eAdmin');
+	Route::resource('administradores', 'AdminController')->middleware('can:eAdmin');
+	Route::resource('editar', 'EditarController')->middleware('can:eAdmin');
 });
 
 Route::middleware('auth')->prefix('administrador')->group(function(){
 
-	Route::resource('usuarios-promocoes', 'UsersPromotionsController');
+	Route::resource('usuarios-promocoes', 'UsersPromotionsController')->middleware('can:eAdmin');
+	Route::resource('favoritos', 'FavoritesController')->middleware('can:eAdmin');
 	Route::get('relatorios', function () {
     return view('administrador.relatorios.index');
 });

@@ -12,7 +12,7 @@ class UserPromotion extends Model
 	 
     protected $table = "userspromotions";
 
-    protected $fillable = ['promotion_id', 'user_id', 'date'];
+    protected $fillable = ['promotion_id', 'user_id', 'date', 'promotion_name'];
     
     //protected $dates = ['deleted_at'];
 

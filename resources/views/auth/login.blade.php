@@ -23,6 +23,8 @@
                 </div>
 
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="col-12">
+                      <h5 style="color: #fff;">Faça login para administrar o Sistema</h5>
+                      
                         @csrf
                         <div class="form-group">
                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="exemplo@mail.com" required autofocus>
@@ -45,20 +47,6 @@
                         <button type="submit" class="btn">
                             {{ __('Entrar') }}
                         </button>
-                        <div class="social-auth-links text-center">
-                            <a href="#" class="btn-block btn-social btn-facebook btn-flat"><i class="fab fa-facebook"></i>
-                            </i> Entre com o Facebook</a>
-                        </div>
-                        <div class="col-12 forgot">  
-                            <a href="{{ route('password.request') }}">
-                            {{ __('Esqueceu a senha?') }}
-                            </a>
-                            <br>
-                            <br>
-                            <a href="{{ route('register') }}">
-                            {{ __('Não tem uma conta? Inscreva-se') }}
-                            </a>
-                        </div>
                     </form>
             </div>
         </div>

@@ -22,6 +22,11 @@ class RegisterController extends Controller
     |
     */
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     use RegistersUsers;
 
     /**
@@ -29,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/administrador';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

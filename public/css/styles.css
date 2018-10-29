@@ -128,7 +128,7 @@
 .container {background-color: rgba(255,140,0,0.75); width: 100%; float: left; padding: 5% 3%;}
 
 /* CABEÇALHO */
- .logo {width: 81px; height: 56px; background: url(../img/logo6.png) center center/90px no-repeat; font-size: 0;}
+ .logo {width: 70px; height: 56px; background: url(../img/logo1.png) center center/70px no-repeat; font-size: 0;}
  .btn-menu {width: 56px; height: 56px; float: right; text-align: center; color: #aaa; border-radius: 2px; cursor: pointer;}
 
  /* MENU */
@@ -144,13 +144,13 @@
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175); background-color:rgb(255, 255, 255); -webkit-transition:all .3s; -moz-transition:all .3s; transition:all .3s; height: 80px;}
 
   @media screen and (max-width: 300px) {
-    .logo {width: 60px; background: url(../img/logo-icone.png) center center/60px no-repeat;}
+    .logo {width: 60px; background: url(../img/logo1.png) center center/60px no-repeat;}
     .btn {font-size: 2em;}
    }
 
   /* SMALL DEVICES - SMARTPHONES */
    @media screen and (min-width: 480px) {
-    .logo {width: 214px; background: url(../img/logo.png) center center/214px no-repeat;}
+    .logo {width: 80px; background: url(../img/logo1.png) center center/80px no-repeat;}
     .btn {font-size: 2em;}
    }
 

@@ -8,6 +8,7 @@ use App\Company;
 use App\Promotion;
 use App\User;
 use App\UserPromotion;
+use App\Favorite;
 
 class AdministradorController extends Controller
 {
@@ -38,9 +39,10 @@ class AdministradorController extends Controller
         $totalUsuarios = User::count();
         $totalAdministradores = User::where('admin','=','S')->count();
         $totalCadastrosPromocoes = UserPromotion::count();
+        $totalFavoritos = Favorite::count();
 
 
-        return view('administrador', compact('listaMigalhas','totalEmpresas','totalPromocoes', 'totalUsuarios', 'totalAdministradores', 'totalCadastrosPromocoes'));
+        return view('administrador', compact('listaMigalhas','totalEmpresas','totalPromocoes', 'totalUsuarios', 'totalAdministradores', 'totalCadastrosPromocoes', 'totalFavoritos'));
     
     }
 }

@@ -14298,7 +14298,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);
-module.exports = __webpack_require__(75);
+module.exports = __webpack_require__(72);
 
 
 /***/ }),
@@ -14347,7 +14347,6 @@ Vue.component('migalhas', __webpack_require__(60));
 Vue.component('modal', __webpack_require__(63));
 Vue.component('modallink', __webpack_require__(66));
 Vue.component('formulario', __webpack_require__(69));
-Vue.component('artigocard', __webpack_require__(72));
 
 var app = new Vue({
   el: '#app',
@@ -49235,7 +49234,7 @@ var render = function() {
               attrs: {
                 tipo: "link",
                 nome: "adicionar",
-                titulo: "Criar",
+                titulo: "Novo",
                 css: ""
               }
             })
@@ -49343,7 +49342,7 @@ var render = function() {
                                     url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "detalhe",
-                                    titulo: " Detalhe |",
+                                    titulo: " Detalhes |",
                                     css: ""
                                   }
                                 })
@@ -49402,7 +49401,7 @@ var render = function() {
                                     url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "detalhe",
-                                    titulo: " Detalhe |",
+                                    titulo: " Detalhes ",
                                     css: ""
                                   }
                                 })
@@ -49421,7 +49420,7 @@ var render = function() {
                                     url: _vm.editar,
                                     tipo: "link",
                                     nome: "editar",
-                                    titulo: " Editar |",
+                                    titulo: "| Editar",
                                     css: ""
                                   }
                                 })
@@ -49454,7 +49453,7 @@ var render = function() {
                                     url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "detalhe",
-                                    titulo: " Detalhe |",
+                                    titulo: " Detalhes ",
                                     css: ""
                                   }
                                 })
@@ -50124,128 +50123,6 @@ if (false) {
 
 /***/ }),
 /* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(1)
-/* script */
-var __vue_script__ = __webpack_require__(73)
-/* template */
-var __vue_template__ = __webpack_require__(74)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\ArtigoCard.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-c7429c96", Component.options)
-  } else {
-    hotAPI.reload("data-v-c7429c96", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor'],
-  filters: {
-    formataData: function formataData(valor) {
-      if (!valor) return '';
-      valor = valor.toString();
-      valor = valor.split('-');
-      return valor[2] + '/' + valor[1] + '/' + valor[0];
-    }
-  }
-});
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("img", {
-      staticClass: "card-img-top",
-      attrs: { src: "", alt: "Curso Hardware Smartphones" }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
-      _c("small", { staticStyle: { "font-size": "0.7em" } }, [
-        _vm._v(_vm._s(_vm.data) + " - " + _vm._s(_vm.autor))
-      ]),
-      _vm._v(" "),
-      _c("h4", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.titulo))]),
-      _vm._v(" "),
-      _c("p", { staticClass: "card-text wow zoomIn" }, [
-        _vm._v(_vm._s(_vm.descricao) + "\n        ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        { staticClass: "btn btn-outline-secondary", attrs: { href: "link" } },
-        [_vm._v("LEIA MAIS")]
-      )
-    ])
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-c7429c96", module.exports)
-  }
-}
-
-/***/ }),
-/* 75 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

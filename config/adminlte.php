@@ -128,7 +128,12 @@ return [
         [
             'text' => 'Cadastros em promoções',
             'url'  => 'administrador/usuarios-promocoes',
-            'icon' => 'user',
+            'icon' => 'gift',
+        ],
+        [
+            'text' => 'Cadastros de favoritos',
+            'url'  => 'administrador/favoritos',
+            'icon' => 'star',
         ],
         [
             'text' => 'Relatórios do sistema',

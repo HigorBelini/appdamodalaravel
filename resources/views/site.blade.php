@@ -37,7 +37,6 @@
               @else
                 <li class="nav-item">
                   <a href="#">
-                    <img src="{{asset ('img/perfil.jpg') }}" style="width:40px; height:40px; border-radius:50%;">
                     <span class="hidden-xs" style="color:#000; font-size: 1.2em;">{{ Auth::user()->name }}</span></a>
                     <span style="color:#000; font-size: 1.2em;"> | </span>
                     <!--<a href="#" class="hidden-xs" style="color:#000; font-size: 1.2em;">Sair</a>-->
@@ -52,47 +51,13 @@
                             </form>
                     </a>
                 </li>
+                 @can('eAdmin')
+                 <br>
+                 <li>
+                    <a  class="btn btn-danger" href="{{route('administrador')}}">Administração</a>
+                 </li>
+                    @endcan
               @endguest
-                <br>  
-                <form action="#" method="get" class="sidebar-form">
-                    <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Buscar por...">
-                          <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-success"><i class="fa fa-search"></i>
-                            </button>
-                          </span>
-                    </div>
-                </form>
-                <div class="dropdown-divider"></div>
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Página inicial</a>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Promoções
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="metodologia">Todas as Promoções</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="metodologia">Buscar por Empresas</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="metodologia">Buscar mais Recentes</a>
-                    </div>
-                </li>
-                <div class="dropdown-divider"></div>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Empresas
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="metodologia">Todas as empresas</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="metodologia">Buscar por localização</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="metodologia">Buscar por ramo de atuação</a>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
@@ -146,54 +111,6 @@
       </div>
     </div>
     
-    <section class="content">
-      <!-- Small boxes (Stat box) -->
-     <div class="row">
-           <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner botoesMenuPrincipal">
-                <center><i class="fas fa-road"></i></center>
-                <h5>Avenida da Moda</h5>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner botoesMenuPrincipal">
-                  <center><i class="fas fa-map-marker-alt"></i></center>
-                <h5>Como Chegar</h5>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner botoesMenuPrincipal">
-              <center><i class="fas fa-search"></i></center>
-              <h5>Buscar por Lojas</h5>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner botoesMenuPrincipal">
-                <center><i class="fas fa-gift"></i></center>
-                <h5>Eventos Avenida</h5>
-              </div>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-      <!-- /.row -->
-    </section>
-
 </body>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
