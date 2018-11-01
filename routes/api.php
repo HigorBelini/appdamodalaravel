@@ -12,7 +12,6 @@ use App\UserPromotion;
 use App\Favorite;
 use Illuminate\Support\Facades\DB;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -169,7 +168,12 @@ Route::middleware('auth:api')->post('/promotionregistration', function (Request 
    foreach ($promotion as $key => $value) {
      $userpromotion = new UserPromotion;
 	 $userpromotion->promotion_id = $value->id;
-	 $userpromotion->promotion_name= $value->name;
+	 $userpromotion->promotion_name = $value->name;
+	 $userpromotion->promotion_startdate = $value->startdate;
+	 $userpromotion->promotion_finaldate = $value->finaldate;
+	 $userpromotion->promotion_descriptive = $value->descriptive;
+	 $userpromotion->promotion_promotionimage = $value->promotionimage;
+	 $userpromotion->promotion_logocompany = $value->logocompany;
 	 $userpromotion->user_id = $user->id;
 	 $userpromotion->date = $date;
 	 $userpromotion->save();
@@ -183,6 +187,8 @@ Route::middleware('auth:api')->post('/promotionregistration', function (Request 
    return $user->userpromotions;
 });
 
+
+
 Route::middleware('auth:api')->post('/favorites', function (Request $request) {
    $user = $request->user();
    $data = $request->all();
@@ -193,6 +199,15 @@ Route::middleware('auth:api')->post('/favorites', function (Request $request) {
     $favorite = new Favorite;
     $favorite->company_id = $value->id;
     $favorite->company_socialname = $value->socialname;
+    $favorite->companies_fantasyname = $value->fantasyname;
+    $favorite->companies_number = $value->number;
+    $favorite->companies_shopfacade = $value->shopfacade;
+    $favorite->companies_logo = $value->logo;
+    $favorite->companies_latitude = $value->latitude;
+    $favorite->companies_longitude = $value->longitude;
+    $favorite->companies_industry = $value->industry;
+    $favorite->companies_descriptive = $value->descriptive;
+    $favorite->url = $value->url;
     $favorite->user_id = $user->id;
     $favorite->date = $date;
     $favorite->save();
@@ -209,7 +224,16 @@ Route::middleware('auth:api')->post('/favorites', function (Request $request) {
 
 Route::middleware('auth:api')->get('/promotionsuserlist', function (Request $request) {
     $user = $request->user();
-    return $user->userpromotions()->orderBy('date','DESC')->get();
+
+
+    $userpromotions = $user->userpromotions()->orderBy('date','DESC')->get();
+
+    foreach ($userpromotions as $key => $userpromotion) {
+		$userpromotion->promotion_promotionimage = asset($userpromotion->promotion_promotionimage);
+		$userpromotion->promotion_logocompany = asset($userpromotion->promotion_logocompany);
+	}
+
+    return $userpromotions;
     /*$userpromotions = DB::table('userspromotions')
                       ->join('users','users.id','=','userspromotions.user_id')
                       ->join('promotions','promotions.id','=','userspromotions.promotion_id')
@@ -224,7 +248,63 @@ Route::middleware('auth:api')->get('/promotionsuserlist', function (Request $req
 
 Route::middleware('auth:api')->get('/favoriteuser', function (Request $request) {
     $user = $request->user();
-    return $user->favorites()->orderBy('date','DESC')->get();
+    $favorites = $user->favorites()->orderBy('date','DESC')->get();
+
+    foreach ($favorites as $key => $favorite) {
+		$favorite->companies_logo = asset($favorite->companies_logo);
+		$favorite->companies_shopfacade = asset($favorite->companies_shopfacade);
+	}
+
+	return $favorites;
+});
+
+Route::get('/promotions', function (Request $request) {
+
+	$promotions = DB::table('promotions')
+				  ->select('id','company_id','name', 'startdate', 'finaldate','descriptive' ,'user_id', 'created_at', 'updated_at', 'promotionimage', 'logocompany')
+				  ->whereNull('deleted_at')
+				  ->orderBy('finaldate','ASC')
+				  ->get();
+
+	foreach ($promotions as $key => $promotion) {
+		$promotion->promotionimage = asset($promotion->promotionimage);
+		$promotion->company_id = Company::find($promotion->company_id)->socialname;
+		$promotion->logocompany = asset($promotion->logocompany);
+	}
+	return $promotions;
+});
+
+Route::post('/promotionscompany', function (Request $request) {
+
+	$data = $request->all();
+
+	$promotions = DB::table('promotions')
+				  ->join('companies','companies.id','=','promotions.company_id')
+				  ->select('promotions.id','promotions.company_id','promotions.name', 'promotions.startdate', 'promotions.finaldate','promotions.descriptive' ,'promotions.user_id', 'promotions.created_at', 'promotions.updated_at', 'promotions.promotionimage', 'promotions.logocompany')
+				  ->whereNull('promotions.deleted_at')
+				  ->where('promotions.company_id', '=', $data)
+				  ->orderBy('finaldate','ASC')
+				  ->get();
+
+	//$companies = Company::find($data);
+	return $promotions;
 
 });
+
+/*Route::middleware('auth:api')->get('/users', 'UserController@users');
+Route::middleware('auth:api')->get('/user', 'UserController@user');
+Route::middleware('auth:api')->put('/user', 'UserController@atualiza');
+Route::post('/register', 'UserController@register');
+Route::post('/login', 'UserController@login');
+
+Route::get('/companies', 'CompaniesController@lista');
+Route::get('/promotions', 'PromotionsController@lista');
+
+Route::middleware('auth:api')->post('/promotionregistration', 'UsersPromotionsController@cadastrospromocoes');
+Route::middleware('auth:api')->get('/promotionregistration', 'UsersPromotionsController@listacadastrospromocoes');
+Route::middleware('auth:api')->get('/promotionsuserlist', 'UsersPromotionsController@promotionsuserlist');
+
+Route::middleware('auth:api')->post('/favorites', 'FavoritesController@cadastrofavorito');
+Route::middleware('auth:api')->get('/favorites', 'FavoritesController@listafavoritos');
+Route::middleware('auth:api')->get('/favoriteuser', 'FavoritesController@listafavoritosusuario');*/
 

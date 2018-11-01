@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLinkRedirectSiteCompanies extends Migration
+class AddUrlOfCompaniesToFavorites extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddLinkRedirectSiteCompanies extends Migration
      */
     public function up()
     {
-        Schema::table('companies', function (Blueprint $table) {
+        Schema::table('favorites', function (Blueprint $table) {
             $table->string('url');
         });
     }
@@ -25,7 +25,7 @@ class AddLinkRedirectSiteCompanies extends Migration
      */
     public function down()
     {
-        Schema::table('companies', function (Blueprint $table) {
+        Schema::table('favorites', function (Blueprint $table) {
             $table->dropColumn('url');
         });
     }
