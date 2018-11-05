@@ -133,6 +133,7 @@ Route::get('/companies', function (Request $request) {
 				->select('id', 'socialname', 'fantasyname', 'number', 'shopfacade','logo', 'latitude', 'longitude', 'industry', 'descriptive', 'keywords', 'date','user_id', 'url')
 				->whereNull('deleted_at')
                 ->orderBy('fantasyname','ASC')
+                //->limit(10)
                 ->get();
 
 	foreach ($companies as $key => $company) {
@@ -260,9 +261,12 @@ Route::middleware('auth:api')->get('/favoriteuser', function (Request $request) 
 
 Route::get('/promotions', function (Request $request) {
 
+	$date = date('Y-m-d');
 	$promotions = DB::table('promotions')
 				  ->select('id','company_id','name', 'startdate', 'finaldate','descriptive' ,'user_id', 'created_at', 'updated_at', 'promotionimage', 'logocompany')
 				  ->whereNull('deleted_at')
+				  ->where('finaldate', '>', $date)
+				  ->whereDate('startdate','<=',$date)
 				  ->orderBy('finaldate','ASC')
 				  ->get();
 
@@ -274,7 +278,27 @@ Route::get('/promotions', function (Request $request) {
 	return $promotions;
 });
 
-Route::post('/promotionscompany', function (Request $request) {
+Route::get('/promotionshome', function (Request $request) {
+
+	$date = date('Y-m-d');
+	$promotions = DB::table('promotions')
+				  ->select('id','company_id','name', 'startdate', 'finaldate','descriptive' ,'user_id', 'created_at', 'updated_at', 'promotionimage', 'logocompany')
+				  ->whereNull('deleted_at')
+				  ->where('finaldate', '>', $date)
+				  ->whereDate('startdate','<=',$date)
+				  ->orderBy('finaldate','ASC')
+				  ->limit(3)
+				  ->get();
+
+	foreach ($promotions as $key => $promotion) {
+		$promotion->promotionimage = asset($promotion->promotionimage);
+		$promotion->company_id = Company::find($promotion->company_id)->socialname;
+		$promotion->logocompany = asset($promotion->logocompany);
+	}
+	return $promotions;
+});
+
+Route::get('/promotionscompany', function (Request $request) {
 
 	$data = $request->all();
 
@@ -286,7 +310,6 @@ Route::post('/promotionscompany', function (Request $request) {
 				  ->orderBy('finaldate','ASC')
 				  ->get();
 
-	//$companies = Company::find($data);
 	return $promotions;
 
 });
