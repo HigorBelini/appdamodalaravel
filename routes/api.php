@@ -296,7 +296,7 @@ Route::get('/promotionshome', function (Request $request) {
 	return $promotions;
 });
 
-Route::get('/promotionscompany', function (Request $request) {
+/*Route::get('/promotionscompany', function (Request $request) {
 
 	$data = $request->all();
 
@@ -310,7 +310,7 @@ Route::get('/promotionscompany', function (Request $request) {
 
 	return $promotions;
 
-});
+});*/
 
 /*Route::middleware('auth:api')->get('/users', 'UserController@users');
 Route::middleware('auth:api')->get('/user', 'UserController@user');
@@ -328,4 +328,5 @@ Route::middleware('auth:api')->get('/promotionsuserlist', 'UsersPromotionsContro
 Route::middleware('auth:api')->post('/favorites', 'FavoritesController@cadastrofavorito');
 Route::middleware('auth:api')->get('/favorites', 'FavoritesController@listafavoritos');
 Route::middleware('auth:api')->get('/favoriteuser', 'FavoritesController@listafavoritosusuario');*/
+/*OLA*/
 
