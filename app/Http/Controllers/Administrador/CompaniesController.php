@@ -35,8 +35,7 @@ class CompaniesController extends Controller
          "number" => "required",
          "logo" => "image|required|max:1999",
          "shopfacade" => "image|required|max:1999",
-         "latitude" => "required",
-         "longitude" => "required",
+         "latitudeandlongitude" => "required",
          "industry" => "required",
          "descriptive" => "required",
          "keywords" => "required",
@@ -109,8 +108,7 @@ class CompaniesController extends Controller
         $empresa->socialname = $data['socialname'];
         $empresa->fantasyname = $data['fantasyname'];
         $empresa->number = $data['number'];
-        $empresa->latitude = $data['latitude'];
-        $empresa->longitude = $data['longitude'];
+        $empresa->latitudeandlongitude = $data['latitudeandlongitude'];
         $empresa->industry = $data['industry'];
         $empresa->descriptive = $data['descriptive'];
         $empresa->keywords = $data['keywords'];
@@ -136,10 +134,7 @@ class CompaniesController extends Controller
          "socialname" => "required",
          "fantasyname" => "required",
          "number" => "required",
-         //"logo" => "image|max:1999",
-         //"shopfacade" => "image|max:1999",
-         "latitude" => "required",
-         "longitude" => "required",
+         "latitudeandlongitude" => "required",
          "industry" => "required",
          "descriptive" => "required",
          "keywords" => "required",
@@ -178,8 +173,7 @@ class CompaniesController extends Controller
         $empresa->socialname = $data['socialname'];
         $empresa->fantasyname = $data['fantasyname'];
         $empresa->number = $data['number'];
-        $empresa->latitude = $data['latitude'];
-        $empresa->longitude = $data['longitude'];
+        $empresa->latitudeandlongitude = $data['latitudeandlongitude'];
         $empresa->industry = $data['industry'];
         $empresa->descriptive = $data['descriptive'];
         $empresa->keywords = $data['keywords'];

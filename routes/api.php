@@ -130,10 +130,9 @@ Route::post('/login', function (Request $request) {
 Route::get('/companies', function (Request $request) {
 	
 	$companies = DB::table('companies')
-				->select('id', 'socialname', 'fantasyname', 'number', 'shopfacade','logo', 'latitude', 'longitude', 'industry', 'descriptive', 'keywords', 'date','user_id', 'url')
+				->select('id', 'socialname', 'fantasyname', 'number', 'shopfacade','logo','latitudeandlongitude', 'industry', 'descriptive', 'keywords', 'date','user_id', 'url')
 				->whereNull('deleted_at')
                 ->orderBy('fantasyname','ASC')
-                //->limit(10)
                 ->get();
 
 	foreach ($companies as $key => $company) {
@@ -204,8 +203,7 @@ Route::middleware('auth:api')->post('/favorites', function (Request $request) {
     $favorite->companies_number = $value->number;
     $favorite->companies_shopfacade = $value->shopfacade;
     $favorite->companies_logo = $value->logo;
-    $favorite->companies_latitude = $value->latitude;
-    $favorite->companies_longitude = $value->longitude;
+    $favorite->company_latitudeandlongitude = $value->latitudeandlongitude;
     $favorite->companies_industry = $value->industry;
     $favorite->companies_descriptive = $value->descriptive;
     $favorite->url = $value->url;

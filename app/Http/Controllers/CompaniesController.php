@@ -18,7 +18,7 @@ class CompaniesController extends Controller
 	public function lista(request $request){
 		
 	$companies = DB::table('companies')
-			->select('id', 'socialname', 'fantasyname', 'number', 'shopfacade','logo', 'latitude', 'longitude', 'industry', 'descriptive', 'keywords', 'date','user_id', 'url')
+			->select('id', 'socialname', 'fantasyname', 'number', 'shopfacade','logo','latitudeandlongitude', 'industry', 'descriptive', 'keywords', 'date','user_id', 'url')
 			->whereNull('deleted_at')
             ->orderBy('fantasyname','ASC')
             ->get();

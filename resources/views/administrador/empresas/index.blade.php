@@ -71,13 +71,8 @@
         </div>
 
         <div class="form-group">
-          <label for="latitude">Latitude</label>
-          <input type="text" class="form-control" id="latitude" name="latitude" placeholder="Latitude" value="{{old('latitude')}}" required="required">
-        </div>
-
-        <div class="form-group">
-          <label for="longitude">Longitude</label>
-          <input type="text" class="form-control" id="longitude" name="longitude" placeholder="Longitude" value="{{old('longitude')}}" required="required">
+          <label for="latitudeandlongitude">Latitude e longitude. Ex: -20.000000 -40.000000</label>
+          <input type="text" class="form-control" id="latitudeandlongitude" name="latitudeandlongitude" placeholder=" Ex: -20.000000 -40.000000" value="{{old('latitudeandlongitude')}}" required="required">
         </div>
 
         <div class="form-group">
@@ -142,13 +137,8 @@
         </div>
 
         <div class="form-group">
-          <label for="latitude">Latitude</label>
-          <input type="text" class="form-control" id="latitude" name="latitude" v-model="$store.state.item.latitude" placeholder="Latitude" required="required">
-        </div>
-
-        <div class="form-group">
-          <label for="longitude">Longitude</label>
-          <input type="text" class="form-control" id="longitude" name="longitude" v-model="$store.state.item.longitude" placeholder="Longitude" required="required">
+          <label for="latitudeandlongitude">Latitude e longitude</label>
+          <input type="text" class="form-control" id="latitudeandlongitude" name="latitudeandlongitude" v-model="$store.state.item.latitudeandlongitude" placeholder="Latitude e longitude" required="required">
         </div>
 
         <div class="form-group">
@@ -184,8 +174,7 @@
   <modal nome="detalhe" v-bind:titulo="$store.state.item.socialname">
         <p><b>Nome fantasia:</b> @{{$store.state.item.fantasyname}}<br></p>
         <p><b>Número:</b> @{{$store.state.item.number}}<br></p>
-        <p><b>Latitude:</b> @{{$store.state.item.latitude}}<br></p>
-        <p><b>Longitude:</b> @{{$store.state.item.longitude}}</p>
+        <p><b>Latitude e longitude:</b> @{{$store.state.item.latitudeandlongitude}}<br></p>
         <p><b>Ramo de atuação:</b> @{{$store.state.item.industry}}<br></p>
         <p><b>Descrição:</b> @{{$store.state.item.descriptive}}</p>
         <p><b>Palavras-chave:</b> @{{$store.state.item.keywords}}<br></p>

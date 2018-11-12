@@ -10,7 +10,7 @@ class Company extends Model
 {
     use SoftDeletes;
 	
-    protected $fillable = ['socialname', 'fantasyname', 'number', 'logo', 'shopfacade', 'latitude', 'longitude', 'industry', 'descriptive', 'keywords', 'date'];
+    protected $fillable = ['socialname', 'fantasyname', 'number', 'logo', 'shopfacade', 'latitudeandlongitude', 'industry', 'descriptive', 'keywords', 'date'];
     
     protected $dates = ['deleted_at'];
 
@@ -26,7 +26,6 @@ class Company extends Model
     {
 
       $listaModelo = DB::table('companies')
-                      //->join('users','users.id','=','artigos.user_id')
                       ->select('companies.fantasyname')
                       ->whereNull('companies.deleted_at')
                       ->orderBy('companies.id','DESC')
